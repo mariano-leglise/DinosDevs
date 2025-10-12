@@ -1,4 +1,11 @@
 <template>
+
+<div class="botones-superiores">
+  <button @click="volverjuegos">
+    <i class="fas fa-sign-out-alt"></i> Volver a juegos
+  </button>
+</div>
+
   <div class="runner-container">
     <h2>Dino Runner 🦖</h2>
     <canvas ref="gameCanvas" class="game-canvas"></canvas>
@@ -8,6 +15,9 @@
       <h3>💥 ¡Perdiste!</h3>
       <p>Puntaje final: {{ score }}</p>
       <button @click="restartGame" class="restart-button">🔄 Reiniciar Juego</button>
+       <button @click="volverjuegos">
+    <i class="botonGameover"></i> Volver a juegos
+  </button>
     </div>
 
     <div class="score-display">
@@ -21,6 +31,11 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
+
+
+const router = useRouter();
+
 
 // Referencia al canvas
 const gameCanvas = ref(null);
@@ -180,6 +195,17 @@ function handleKeyDown(e) {
   }
 }
 
+
+// ----------------------------------------------------
+// FUNCIÓN PARA VOLVER A JUEGOS (¡NUEVO!)
+// ----------------------------------------------------
+const volverjuegos = () => {
+  router.push('/juegos');
+};
+// ----------------------------------------------------
+
+
+
 // Variables para el tamaño del canvas
 const canvasWidth = ref(window.innerWidth * 0.9); // 90% del ancho de la pantalla
 const canvasHeight = ref(200); // Altura fija
@@ -215,9 +241,47 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyDown);
   cancelAnimationFrame(animationId);
 });
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style scoped>
+
+
+.botones-superiores {
+  display: flex;
+  margin-bottom: 20px; /* Espacio debajo de los botones */
+  justify-content: center;
+  margin-top: 15px;
+
+}
+button {
+  background-color: #4a7a5b;
+  color: #f0ead2;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #5b8e6b;
+}
+
+
+
 .runner-container {
   position: relative;
   display: flex;
