@@ -269,7 +269,7 @@ volverjuegos() {
 
 .botones-superiores {
   display: flex;
-  justify-content: flex-end; /* Alinea los botones a la derecha */
+  justify-content: center; /* Alinea los botones a la derecha */
   margin-bottom: 20px; /* Espacio debajo de los botones */
 }
 button {
