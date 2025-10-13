@@ -6,6 +6,9 @@
  */
 
 import axios from 'axios';
+/**agregue esto */
+
+import { useUserStore } from '@/stores/userStore';
 
 /**
  * Instancia de Axios configurada para interactuar con el backend.
@@ -19,5 +22,23 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Implementación del Interceptor AGREGE ESTO 12/10/2025
+api.interceptors.request.use(
+  (config) => {
+    const userStore = useUserStore();
+    const token = userStore.token;
+
+    // Solo añade el token si el usuario está logueado
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default api;

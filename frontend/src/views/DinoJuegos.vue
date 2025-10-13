@@ -7,6 +7,11 @@
         <i class="fas fa-shopping-cart"></i> Carrito
       </button>
  -->
+
+ <button @click="verRanking" class="btn-ranking">
+        🏆 Ranking
+      </button>
+
       <button @click="cerrarSesion">
         <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
       </button>
@@ -73,15 +78,16 @@ export default {
       userStore.logout();
       router.push('/'); // Redirige al Home después de cerrar sesión
     };
+/**
+     * Navega a la vista del ranking global.
+     */
+    const verRanking = () => {
+      router.push('/ranking');
+    };
 
-    return { cerrarSesion };
+    return { cerrarSesion, verRanking};
   },
   methods: {
-    /**
-     * Navega al juego seleccionado según su identificador
-     *
-     * @param {string} juego - Identificador del juego ('memoria', 'sopa', etc.)
-     */
     seleccionarJuego(juego) {
       if (juego === 'memoria') {
         this.$router.push('/memory-game');
@@ -92,12 +98,6 @@ export default {
       }
     },
 
-    /**
-     * Muestra el ranking de usuarios (pendiente de implementación)
-     */
-    verRanking() {
-      console.log('Ver ranking');
-    },
 
     /**
      * Muestra el carrito de compras (pendiente de implementación)
