@@ -15,6 +15,8 @@ import RealidadAumentada from '@/views/RealidadAumentada.vue'
 import MemoryGame from '@/components/MemoryGame.vue'
 import SopaDeLetras from '@/components/SopaDeLetras.vue'
 import RegisterPrompt from '@/views/RegisterPrompt.vue';
+import RankingGlobal from '@/views/RankingGlobal.vue'; // 💡 IMPORTAR EL NUEVO COMPONENTE
+
 
 /**
  * Lista de rutas definidas para la aplicación.
@@ -34,6 +36,8 @@ const routes = [
      * @param {Route} from - Ruta origen
      * @param {Function} next - Callback para continuar con la navegación
      */
+    // La protección se aplica a /juegos y todas las rutas que dependen de ella
+
     beforeEnter: (to, from, next) => {
       const token = Cookie.get('token'); // Verificamos si el token está en las cookies
       if (!token) {
@@ -43,6 +47,23 @@ const routes = [
       }
     }
   },
+
+
+ // 💡 NUEVA RUTA DE RANKING PROTEGIDA (Se beneficia del mismo beforeEnter)
+  {
+      path: '/ranking',
+      component: RankingGlobal, // Componente creado en el paso anterior
+      beforeEnter: (to, from, next) => {
+          const token = Cookie.get('token');
+          if (!token) {
+            next('/register-prompt');
+          } else {
+            next();
+          }
+      }
+  },
+
+
   { path: '/informacion', component: DinoInformacion },
   { path: '/realidad-aumentada', component: RealidadAumentada },
   { path: '/memory-game', component: MemoryGame },

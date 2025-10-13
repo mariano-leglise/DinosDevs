@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config'; // Importa el módulo de configur
 import { AuthModule } from './auth/auth.module'; // Importa el módulo de autenticación
 import { UsersModule } from './users/users.module'; 
 import { MailModule } from './mail/mail.module';
+
+import { PuntajesModule } from './puntajes/puntajes.module';
 /* import { DinosaursModule } from '../src/dinosaurs/dinosaurs.module';
 import { RankingsModule } from './rankings/rankings.module';
 import { JuegosModule } from './juegos/juegos.module'; */
@@ -17,6 +19,7 @@ import { JuegosModule } from './juegos/juegos.module'; */
     AuthModule, 
     UsersModule,
     MailModule,
+     PuntajesModule, 
    /*  DinosaursModule,
     RankingsModule,
     JuegosModule, */

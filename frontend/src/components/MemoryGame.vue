@@ -75,6 +75,8 @@
 import dino1 from '@/assets/dino1.png';
 import dino2 from '@/assets/dino2.png';
 import dino3 from '@/assets/dino3.png';
+import { registrarPuntaje } from '@/services/puntajeService'; // 💡 NUEVA IMPORTACIÓN
+
 
 
 export default {
@@ -226,6 +228,21 @@ export default {
       if (this.cards.every(card => card.matched)) {
         this.stopTimer();
         this.gameOver = true;
+
+// ----------------------------------------------------
+        // 💡 LÓGICA DE REGISTRO DE PUNTAJE AÑADIDA
+        const JUEGO_ID_MEMORIA = 1; // ID del juego de memoria en tu DB
+
+        registrarPuntaje(JUEGO_ID_MEMORIA, this.score) // Usa el score calculado
+          .then(() => console.log(`✅ Puntaje de Memoria (${this.score} pts) enviado.`))
+          .catch(error => {
+            console.error('⚠️ Error al guardar puntaje de Memoria:', error);
+            // Mostrar un mensaje de error al usuario si falla la conexión o la autenticación
+            // alert('Error al guardar tu puntaje. Asegúrate de estar logueado.');
+          });
+        // ----------------------------------------------------
+
+
       }
     },
 

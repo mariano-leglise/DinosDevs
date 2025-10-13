@@ -26,12 +26,19 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "prisma": "^6.3.1"
+    "@types/node": "^24.7.2",
+    "prisma": "^6.3.1",
+    "ts-node": "^10.9.2"
+  },
+
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
     "start": "nest start",
     "start:dev": "nest start --watch",
     "build": "nest build",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "db:seed": "npx prisma db seed"
   }
 }

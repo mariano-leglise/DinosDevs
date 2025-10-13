@@ -32,6 +32,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
+import { registrarPuntaje } from '@/services/puntajeService';
 
 
 const router = useRouter();
@@ -169,6 +170,20 @@ const startGame = () => {
 
 const endGame = () => {
   cancelAnimationFrame(animationId);
+
+
+// ----------------------------------------------------
+  // 💡 LÓGICA DE REGISTRO DE PUNTAJE AÑADIDA
+  const JUEGO_ID_DINORUN = 2; // ID del juego Dino Run en tu DB
+
+  registrarPuntaje(JUEGO_ID_DINORUN, score.value)
+    .then(() => console.log(`✅ Puntaje de Dino Run (${score.value} pts) enviado.`))
+    .catch(error => {
+      console.error('⚠️ Error al guardar puntaje de Dino Run:', error);
+      // alert('Error al guardar tu puntaje. Asegúrate de estar logueado.');
+    });
+  // ----------------------------------------------------
+
   gameOver.value = true;
 };
 
