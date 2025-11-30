@@ -1,5 +1,4 @@
-// src/puntajes/puntajes.service.ts Este servicio maneja la lógica de la base de datos (Prisma).
-
+// src/puntajes/puntajes.service.ts
 
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service'; // AJUSTA ESTA RUTA
@@ -59,5 +58,19 @@ export class PuntajesService {
       nombre: usersMap.get(r.usuarioId) || 'Usuario Desconocido',
       puntosTotales: r._sum.puntuacion || 0,
     }));
+  }
+  
+  // ⬇️ FUNCIÓN AÑADIDA PARA EL TIENDAMODULE ⬇️
+  /**
+   * Calcula y devuelve el puntaje total acumulado de un usuario específico.
+   * Se utiliza para verificar si un usuario tiene suficientes puntos para canjear.
+   */
+  async obtenerPuntajeTotal(usuarioId: number): Promise<number> {
+    const total = await this.prisma.puntaje.aggregate({
+        where: { usuarioId },
+        _sum: { puntuacion: true },
+    });
+    // Devuelve el total o 0 si aún no hay puntajes
+    return total._sum.puntuacion || 0;
   }
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>¡T-Rex en Realidad Aumentada - Prueba Final!</title>
+   
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/1.12.0/model-viewer.min.js"
+    ></script>
+   
+    <style>
+     body { margin: 0; overflow: hidden; background-color: #000; }
+      model-viewer {
+       width: 100vw;
+      height: 100vh;
+       }
+    
+    </style>
+  </head>
+  <body>
+
+    <model-viewer
+      src="./tyrant_king_-_tyrannosaurus.glb"
+      alt="tyrannosaurus"
+      ar
+      ar-modes="webxr quick-look"
+      camera-controls
+      shadow-intensity="1"
+    >
+
+      <div
+        slot="ar-button"
+        style="
+          background-color: #4caf50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+        "
+      >
+        ¡Ver T-Rex en tu Mundo! 
+      </div>
+
+    
+    </model-viewer>
+  </body>
+</html>

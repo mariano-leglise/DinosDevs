@@ -8,10 +8,17 @@
       </button>
  -->
 
+      <!-- Boton ranking -->
  <button @click="verRanking" class="btn-ranking">
         🏆 Ranking
       </button>
 
+      <!-- Boton dinoTienda -->
+      <button @click="verDinoTienda" class="btn-tienda">
+        🦕 DinoTienda
+      </button>
+
+      <!-- Boton cerrar sesion -->
       <button @click="cerrarSesion">
         <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
       </button>
@@ -84,8 +91,15 @@ export default {
     const verRanking = () => {
       router.push('/ranking');
     };
+    /**
+     * Navega a la DinoTienda.
+     */
+    const verDinoTienda = () => {
+      // Necesitas definir esta ruta en tu router/index.js
+      router.push('/dinotienda');
+    };
 
-    return { cerrarSesion, verRanking};
+    return { cerrarSesion, verRanking, verDinoTienda };
   },
   methods: {
     seleccionarJuego(juego) {

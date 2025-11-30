@@ -15,7 +15,10 @@ import RealidadAumentada from '@/views/RealidadAumentada.vue'
 import MemoryGame from '@/components/MemoryGame.vue'
 import SopaDeLetras from '@/components/SopaDeLetras.vue'
 import RegisterPrompt from '@/views/RegisterPrompt.vue';
-import RankingGlobal from '@/views/RankingGlobal.vue'; // 💡 IMPORTAR EL NUEVO COMPONENTE
+import RankingGlobal from '@/views/RankingGlobal.vue';
+
+// ⬇️ NUEVA IMPORTACIÓN PARA EL MÓDULO DE LA TIENDA ⬇️
+import DinoTienda from '@/views/DinoTienda.vue';
 
 
 /**
@@ -28,31 +31,36 @@ const routes = [
   {
     path: '/juegos',
     component: DinoJuegos,
-    /**
-     * Hook beforeEnter que verifica si el usuario está autenticado antes de acceder a la ruta.
-     * Utiliza una cookie llamada 'token' para la validación.
-     *
-     * @param {Route} to - Ruta destino
-     * @param {Route} from - Ruta origen
-     * @param {Function} next - Callback para continuar con la navegación
-     */
-    // La protección se aplica a /juegos y todas las rutas que dependen de ella
-
+    // Protección para /juegos
     beforeEnter: (to, from, next) => {
-      const token = Cookie.get('token'); // Verificamos si el token está en las cookies
+      const token = Cookie.get('token');
       if (!token) {
-        next('/register-prompt'); // Redirigimos si no hay token
+        next('/register-prompt');
       } else {
-        next(); // Si el token existe, seguimos con la ruta
+        next();
       }
     }
   },
 
-
- // 💡 NUEVA RUTA DE RANKING PROTEGIDA (Se beneficia del mismo beforeEnter)
   {
       path: '/ranking',
-      component: RankingGlobal, // Componente creado en el paso anterior
+      component: RankingGlobal,
+      // Protección para /ranking
+      beforeEnter: (to, from, next) => {
+          const token = Cookie.get('token');
+          if (!token) {
+            next('/register-prompt');
+          } else {
+            next();
+          }
+      }
+  },
+
+  // ⬇️ NUEVA RUTA PARA LA DINO TIENDA ⬇️
+  {
+      path: '/dinotienda', // La ruta que usaste en el botón
+      component: DinoTienda, // El componente que creamos
+      // Aplicamos la misma protección de autenticación
       beforeEnter: (to, from, next) => {
           const token = Cookie.get('token');
           if (!token) {
@@ -69,7 +77,7 @@ const routes = [
   { path: '/memory-game', component: MemoryGame },
   { path: '/sopa-de-letras', component: SopaDeLetras },
   { path: '/register-prompt', component: RegisterPrompt }
-]
+];
 
 /**
  * Instancia del router de la aplicación.
@@ -80,4 +88,4 @@ const routes = [
 export default createRouter({
   history: createWebHistory(),
   routes,
-})
+});

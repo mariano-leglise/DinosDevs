@@ -22,9 +22,10 @@
     "pinia": "^2.2.6",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5",
+    "qrcode.vue": "^3.6.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
-    "vue-slick-carousel": "^1.0.6"
+    "vue-slick-carousel": "^1.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
