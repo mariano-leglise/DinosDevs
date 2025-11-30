@@ -243,7 +243,7 @@ ul {
 
 .btn-estilos {
   background-color:#155335;
-  color: #fff;
+  color: #f5d311;
   border: none;
   padding: 12px 30px;
   font-size: 1.1rem;
