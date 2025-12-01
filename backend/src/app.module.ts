@@ -25,9 +25,7 @@ import { TiendaModule } from './tienda/tienda.module';
       
       // 🚨 CORRECCIÓN CRÍTICA PARA EL TIPO MIME GLB 🚨
       serveStaticOptions: {
-          // Forzamos al servidor a enviar el Content-Type correcto 
-          // ('model/gltf-binary') para que los móviles acepten el modelo 3D.
-          // Usamos setHeaders para establecer el Content-Type en archivos .glb
+          // Usamos setHeaders, que sí es reconocido por TypeScript, para forzar el Content-Type correcto.
           setHeaders: (res, path, stat) => {
             if (path.endsWith('.glb')) {
               res.setHeader('Content-Type', 'model/gltf-binary');

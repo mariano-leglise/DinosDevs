@@ -45,17 +45,14 @@ const puntajeActual = ref(0);
 const listaColeccion = ref([]);
 
 // ⚠️ ATENCIÓN: Esta URL debe coincidir con la configuración de NestJS
-const BASE_URL_RA = 'http://192.168.0.17:3000/ra/'; // Ajusta según tu configuración
+const BASE_URL_RA = 'http://192.168.0.76:4000/ra/'; // Ajusta según tu configuración
 
 /**
  * Genera la URL estática para el código QR.
  * @param {string} slug - Identificador único del dinosaurio (ej: 't-rex').
  * @returns {string} La URL completa al archivo HTML de RA.
  */
-const getQrCodeUrl = (slug) => {
-    // Ejemplo: https://tusitio.com/ra/t-rex-ra.html
-    return `${BASE_URL_RA}${slug}-ra.html`;
-};
+const getQrCodeUrl = (slug) => `${BASE_URL_RA}${slug}-ra.html`;
 
 /**
  * Función que carga el puntaje del usuario y la lista de coleccionables desde NestJS.

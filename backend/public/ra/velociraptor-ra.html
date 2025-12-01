@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Velociraptor en RA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; }
+    model-viewer {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <model-viewer
+    src="./velociraptor.glb"
+    alt="Velociraptor"
+    ar
+    ar-modes="webxr quick-look"
+    camera-controls
+    shadow-intensity="1"
+    auto-rotate
+  >
+    <button slot="ar-button" style="
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    ">
+      🦖 Ver en tu mundo
+    </button>
+  </model-viewer>
+</body>
+</html>
