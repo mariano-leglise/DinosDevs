@@ -1,50 +1,37 @@
-// backend/src/app.module.ts
-
-import { Module } from '@nestjs/common';
 import { PrismaModule } from '../prisma/prisma.module';
-import { ConfigModule } from '@nestjs/config'; 
-
-// ⬇️ IMPORTS NECESARIOS PARA SERVIR ARCHIVOS ESTÁTICOS ⬇️
-import { ServeStaticModule } from '@nestjs/serve-static'; 
-import { join } from 'path'; // Utilidad de Node.js para manejar rutas
-
-import { AuthModule } from './auth/auth.module'; 
+import { AuthModule } from './auth/auth.module'; // Importa el módulo de autenticación
 import { UsersModule } from './users/users.module'; 
 import { MailModule } from './mail/mail.module';
-
+import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
 import { PuntajesModule } from './puntajes/puntajes.module';
-import { TiendaModule } from './tienda/tienda.module';
+/* import { DinosaursModule } from '../src/dinosaurs/dinosaurs.module';
+import { RankingsModule } from './rankings/rankings.module';
+import { JuegosModule } from './juegos/juegos.module'; */
 
 @Module({
   imports: [
-    // ⬇️ CONFIGURACIÓN CRÍTICA PARA ARCHIVOS ESTÁTICOS (Realidad Aumentada) ⬇️
-    ServeStaticModule.forRoot({
-      // '__dirname' es la carpeta 'src'. '..' sube al raíz del proyecto. 'public' es la carpeta.
-      rootPath: join(__dirname, '..', 'public'), 
-      serveRoot: '/', // Esto permite acceder a tus archivos desde la raíz
-      
-      // 🚨 CORRECCIÓN CRÍTICA PARA EL TIPO MIME GLB 🚨
-      serveStaticOptions: {
-          // Usamos setHeaders, que sí es reconocido por TypeScript, para forzar el Content-Type correcto.
-          setHeaders: (res, path, stat) => {
-            if (path.endsWith('.glb')) {
-              res.setHeader('Content-Type', 'model/gltf-binary');
-            }
-          },
-      },
-      // ⬆️ FIN DE LA CORRECCIÓN ⬆️
-    }),
-    // ⬆️ FIN CONFIGURACIÓN ESTÁTICA ⬆️
-
     ConfigModule.forRoot({
-      isGlobal: true,
+      isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente
     }),
     PrismaModule, 
     AuthModule, 
     UsersModule,
     MailModule,
-    PuntajesModule,
-    TiendaModule, 
+     PuntajesModule, 
+   /*  DinosaursModule,
+    RankingsModule,
+    JuegosModule, */
   ],
 })
 export class AppModule {}
+
+
+/* 
+¿Por qué es importante ConfigModule.forRoot()?
+ConfigModule.forRoot() es necesario para cargar 
+las variables de entorno desde tu archivo .env. Al
+ pasar la opción { isGlobal: true }, las variables de 
+ entorno estarán disponibles globalmente en toda la 
+ aplicación,
+ no solo en el módulo donde las defines. */ 

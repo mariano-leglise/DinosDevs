@@ -2,7 +2,7 @@
   <div class="ra-ninos">
     <h2 class="ra-titulo">🦕 ¡DINOSAURIOS EN 3D! 🦖</h2>
     <p class="ra-subtitulo">
-      ¡Mira a los dinosaurios como si estuvieran ¡aquí mismo! Solo necesitas tu celular o tus lentes de realidad aumentada.
+      ¡Mira a los dinosaurios como si estuvieran ¡Acá mismo! Solo necesitas un celular o tus lentes de realidad aumentada.
     </p>
     <p class="ra-ayuda">
       <img src="@/assets/DatoCurioso.png" alt="Dinosaurio curioso" class="ra-curioso" />
@@ -69,17 +69,20 @@
   max-width: 700px;
   margin: 0 auto 25px;
   line-height: 1.5;
+  font-weight: bold;
 }
 
+/* Tarjetas de experiencias RA */
 .ra-card {
-  background-color: #ffffff;
-  border: 4px dashed #f9d342;
+ background: linear-gradient(135deg, #f0ead2 0%, #ecdec8 100%);
+   border: 4px dashed #352c07;
   border-radius: 16px;
   padding: 20px;
   margin: 25px auto;
   max-width: 600px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  text-align: center;
 }
 
 .ra-card:hover {
@@ -99,6 +102,7 @@
   font-size: 1rem;
   margin-bottom: 15px;
   line-height: 1.5;
+  font-weight: bold;
 }
 
 .ra-qr {
@@ -123,6 +127,8 @@
   font-size: 1.1rem;
   margin-top: 10px;
   transition: background-color 0.3s, transform 0.2s;
+
+
 }
 
 .ra-btn:hover {
@@ -132,11 +138,11 @@
 
 .ra-ayuda {
   font-family: 'Raleway', sans-serif;
-  color: #3b250c;
+  color: #ffe46e;
   font-size: 1rem;
   margin-top: 30px;
   padding: 12px;
-  background-color: rgba(249, 211, 66, 0.2);
+  background-color: rgba(0, 0, 0, 0.596);
   border-radius: 12px;
   max-width: 600px;
   margin: 30px auto 0;

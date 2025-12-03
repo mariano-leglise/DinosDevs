@@ -13,10 +13,6 @@
         🏆 Ranking
       </button>
 
-      <!-- Boton dinoTienda -->
-      <button @click="verDinoTienda" class="btn-tienda">
-        🦕 DinoTienda
-      </button>
 
       <!-- Boton cerrar sesion -->
       <button @click="cerrarSesion">
