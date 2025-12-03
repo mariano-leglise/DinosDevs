@@ -15,8 +15,8 @@
         </label>
       </div>
     </div>
--->
-  <header>
+  -->
+  <header :style="{ backgroundImage: `url(${escamasImg})` }">
     <img alt="Dinos Devs Logo" class="logo" src="@/assets/logoDinosDevs.png" width="160" height="160" />
 
     <button class="menu-toggle" @click="toggleMenu">☰</button> <!-- menu hamburguesa -->
@@ -28,7 +28,7 @@
       <RouterLink to="/informacion" @click="toggleMenu">Información</RouterLink>
       <RouterLink to="/juegos" @click="toggleMenu">Juegos</RouterLink>
       <!--         reincorporar en su debido tiempo-->
-      <!-- <RouterLink to="/realidad-aumentada" @click="toggleMenu">Realidad Aumentada</RouterLink>  -->
+      <RouterLink to="/realidad-aumentada" @click="toggleMenu">RA</RouterLink>
     </nav>
   </header>
 
@@ -39,6 +39,9 @@
 /* Ambos son componentes de Vue Router, utilizados para manejar la navegación en la aplicación. */
 import { RouterLink, RouterView } from 'vue-router';
 import { reactive, ref } from 'vue'; /* permiten manejar estados reactivos. */
+
+// Importar la imagen de fondo para el header
+import escamasImg from '@/assets/menu11.jpg';
 
 /**
  * Estado reactivo que controla la visibilidad del menú lateral/hamburguesa.
@@ -109,7 +112,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #172c10;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .logo {
@@ -224,5 +229,13 @@ nav a.router-link-exact-active:hover {
 
 .sr-only {
   display: none;
+}
+</style>
+
+<style>
+body {
+  background-color: #4a7a5b; /* Mismo verde oscuro que tu header */
+  margin: 0;
+  padding: 0;
 }
 </style>
